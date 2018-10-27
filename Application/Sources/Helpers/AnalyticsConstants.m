@@ -66,6 +66,7 @@ AnalyticsTitle const AnalyticsTitleWatchLaterOpenMedia = @"play_watch_later";
 AnalyticsSource const AnalyticsSourceAutomatic = @"automatic";
 AnalyticsSource const AnalyticsSourceButton = @"button";
 AnalyticsSource const AnalyticsSourceClose = @"close";
+AnalyticsSource const AnalyticsSourceDeeplink = @"deeplink";
 AnalyticsSource const AnalyticsSourceHandoff = @"handoff";
 AnalyticsSource const AnalyticsSourceLongPress = @"long_click";
 AnalyticsSource const AnalyticsSourceNotification = @"notification";
