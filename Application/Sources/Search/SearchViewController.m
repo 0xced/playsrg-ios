@@ -19,14 +19,18 @@ const NSInteger SearchViewControllerSearchTextMinimumLength = 3;
 
 @property (nonatomic, weak) UISearchBar *searchBar;
 
+@property (nonatomic) NSString *initialQuery;
+
 @end
 
 @implementation SearchViewController
 
 #pragma mark Object lifecycle
 
-- (instancetype)initWithPreferredSearchOption:(SearchOption)searchOption
+- (instancetype)initWithPreferredSearchOption:(SearchOption)searchOption query:(NSString *)query
 {
+    self.initialQuery = query;
+    
     NSArray<NSNumber *> *searchOptions = ApplicationConfiguration.sharedApplicationConfiguration.searchOptions;
     NSAssert(searchOptions.count != 0, @"Search options must be available");
     
@@ -54,7 +58,7 @@ const NSInteger SearchViewControllerSearchTextMinimumLength = 3;
 
 - (instancetype)init
 {
-    return [self initWithPreferredSearchOption:SearchOptionUnknown];
+    return [self initWithPreferredSearchOption:SearchOptionUnknown query:nil];
 }
 
 #pragma mark Getters and setters
@@ -82,6 +86,7 @@ const NSInteger SearchViewControllerSearchTextMinimumLength = 3;
     searchBar.placeholder = [NSString stringWithFormat:NSLocalizedString(@"Enter %@ characters or more", @"Placeholder text displayed in the search field when empty (must be not too longth)"), @(SearchViewControllerSearchTextMinimumLength)];
     searchBar.tintColor = UIColor.play_redColor;
     searchBar.barTintColor = UIColor.clearColor;      // Avoid search bar glitch when revealed by pop in navigation controller
+    searchBar.text = self.initialQuery;
     self.navigationItem.titleView = searchBar;
     self.searchBar = searchBar;
     
@@ -99,6 +104,10 @@ const NSInteger SearchViewControllerSearchTextMinimumLength = 3;
                                                                                   style:UIBarButtonItemStyleDone
                                                                                  target:self
                                                                                  action:@selector(close:)];
+    }
+    
+    if (self.initialQuery) {
+        [self searchBar:searchBar textDidChange:self.initialQuery];
     }
 }
 

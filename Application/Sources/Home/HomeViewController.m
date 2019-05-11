@@ -578,7 +578,7 @@
 - (void)search:(id)sender
 {
     SearchOption preferredSearchOption = self.radioChannel ? SearchOptionRadioShows : SearchOptionTVShows;
-    SearchViewController *searchViewController = [[SearchViewController alloc] initWithPreferredSearchOption:preferredSearchOption];
+    SearchViewController *searchViewController = [[SearchViewController alloc] initWithPreferredSearchOption:preferredSearchOption query:nil];
     
     @weakify(self)
     searchViewController.closeBlock = ^{

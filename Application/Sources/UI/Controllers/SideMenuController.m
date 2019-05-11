@@ -363,7 +363,8 @@ static const CGFloat SideMenuOffset = -50.f;
         UIViewController *viewController = nil;
         switch (selectedMenuItemInfo.menuItem) {
             case MenuItemSearch: {
-                viewController = [[SearchViewController alloc] init];
+                viewController = [[SearchViewController alloc] initWithPreferredSearchOption:[selectedMenuItemInfo.options[MenuItemOptionSearchOptionKey] integerValue]
+                                                                                       query:selectedMenuItemInfo.options[MenuItemOptionSearchQueryKey]];
                 break;
             }
                 

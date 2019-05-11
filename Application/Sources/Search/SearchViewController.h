@@ -18,7 +18,7 @@ OBJC_EXPORT const NSInteger SearchViewControllerSearchTextMinimumLength;
 /**
  *  Instantiate the search, starting with the provided search option if available. If not, use the closest match.
  */
-- (instancetype)initWithPreferredSearchOption:(SearchOption)searchOption;
+- (instancetype)initWithPreferredSearchOption:(SearchOption)searchOption query:(nullable NSString *)query;
 
 /**
  *  Instantiate the search, starting with the first search option available.
